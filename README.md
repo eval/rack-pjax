@@ -49,6 +49,13 @@ Installation
 
     $ gem install rack-pjax
 
+
+Requirements
+------------
+
+- Nokogiri
+
+
 Author
 ------
 
