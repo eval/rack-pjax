@@ -5,6 +5,7 @@ Rack-pjax is middleware that lets you serve 'chrome-less' pages in respond to [p
 
 While responding to a pjax-request is quite easy on a per application basis (e.g. just skip the layout), there are less optimal situations. 
 For example when you have:
+
 - a rack stack, consisting of separate pieces of middleware
 - an application you can't or don't want to customize (e.g. Spree, Radiant)
 
