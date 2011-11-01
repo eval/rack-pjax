@@ -25,6 +25,7 @@ module Rack
         end
         response = [body]
 
+        # headers['Content-Length'] &&= Rack::Utils.bytesize(body).to_s
         if headers['Content-Length']
           length = response.to_ary.inject(0) { |len, part| len + bytesize(part) }
           headers['Content-Length'] = length.to_s
