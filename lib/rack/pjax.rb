@@ -23,6 +23,8 @@ module Rack
             body << r
           end
         end
+
+        response.close if response.respond_to?(:close)
         response = [body]
 
         headers['Content-Length'] &&= bytesize(body).to_s
