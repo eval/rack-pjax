@@ -9,27 +9,27 @@ module Rack
     end
 
     def call(env)
-      status, headers, response = @app.call(env)
+      status, headers, body = @app.call(env)
       headers = HeaderHash.new(headers)
 
       if pjax?(env)
-        body = ""
-        response.each do |r|
+        new_body = ""
+        body.each do |r|
           container = Nokogiri::HTML(r).at_css("[@data-pjax-container]")
           if container
             title = Nokogiri::HTML(r).at_css("title")
-            body << title.to_s << container.inner_html.strip
+            new_body << title.to_s << container.inner_html.strip
           else
-            body << r
+            new_body << r
           end
         end
 
-        response.close if response.respond_to?(:close)
-        response = [body]
+        body.close if body.respond_to?(:close)
+        body = [new_body]
 
-        headers['Content-Length'] &&= bytesize(body).to_s
+        headers['Content-Length'] &&= bytesize(new_body).to_s
       end
-      [status, headers, response]
+      [status, headers, body]
     end
 
     protected
