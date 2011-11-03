@@ -11,7 +11,7 @@ Ryan Bates featured [rack-pjax on Railscasts](http://railscasts.com/episodes/294
 Installation
 ------------
 
-Check out the [Railscast notes]((http://railscasts.com/episodes/294-playing-with-pjax) how to integrate rack-pjax in your Rails 3.1 application.
+Check out the [Railscast notes](http://railscasts.com/episodes/294-playing-with-pjax) how to integrate rack-pjax in your Rails 3.1 application.
 
 The more generic installation comes down to:
 
