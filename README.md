@@ -16,6 +16,7 @@ Check out the [Railscast notes]((http://railscasts.com/episodes/294-playing-with
 The more generic installation comes down to:
 
 I. Add the gem to your Gemfile
+
 ```ruby
     # Gemfile
     gem "rack-pjax"
