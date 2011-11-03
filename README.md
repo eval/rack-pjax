@@ -3,16 +3,25 @@ Rack-pjax [![stillmaintained](http://stillmaintained.com/eval/rack-pjax.png)](ht
 
 Rack-pjax is middleware that lets you serve 'chrome-less' pages in respond to [pjax-requests](https://github.com/defunkt/jquery-pjax).
 
-While responding to a pjax-request is quite easy on a per application basis (e.g. just skip the layout), there are less optimal situations. 
-For example when you have:
+It does this by simply filtering the generated page; only the title and inner-html of the pjax-container are sent to the client.
 
-- a rack stack, consisting of several pieces of middleware
-- an application you can't or don't want to customize server-side (e.g. Spree, Radiant)
+While this won't save you any time rendering the page, it gives you more flexibility where or how to define the pjax-container.
+Ryan Bates featured [rack-pjax on Railscasts](http://railscasts.com/episodes/294-playing-with-pjax) and explains how this gem compares to [pjax_rails](https://github.com/rails/pjax_rails).
 
-Usage
+Installation
 ------------
 
-I. Include **rack-pjax** as middleware to your application(-stack)
+Check out the [Railscast notes]((http://railscasts.com/episodes/294-playing-with-pjax) how to integrate rack-pjax in your Rails 3.1 application.
+
+The more generic installation comes down to:
+
+I. Add the gem to your Gemfile
+```ruby
+    # Gemfile
+    gem "rack-pjax"
+```
+
+II. Include **rack-pjax** as middleware to your application(-stack)
 
 ```ruby
     # config.ru
@@ -20,7 +29,8 @@ I. Include **rack-pjax** as middleware to your application(-stack)
     use Rack::Pjax
     run RackApp::Application
 ```
-II. Install [jquery-pjax](https://github.com/defunkt/jquery-pjax). Make sure to add the 'data-pjax-container'-attribute to the container.
+
+III. Install [jquery-pjax](https://github.com/defunkt/jquery-pjax). Make sure to add the 'data-pjax-container'-attribute to the container.
 
 ```html
     <head>
@@ -42,12 +52,6 @@ II. Install [jquery-pjax](https://github.com/defunkt/jquery-pjax). Make sure to 
 ```
 
 III. Fire up your [pushState-enabled browser](http://caniuse.com/#search=pushstate) and enjoy!
-
-
-Installation
-------------
-
-    $ gem install rack-pjax
 
 
 Requirements
