@@ -52,13 +52,13 @@ III. Install [jquery-pjax](https://github.com/defunkt/jquery-pjax). Make sure to
     </body>
 ```
 
-III. Fire up your [pushState-enabled browser](http://caniuse.com/#search=pushstate) and enjoy!
+IV. Fire up your [pushState-enabled browser](http://caniuse.com/#search=pushstate) and enjoy!
 
 
 Requirements
 ------------
 
-- Nokogiri
+- Hpricot
 
 
 Author

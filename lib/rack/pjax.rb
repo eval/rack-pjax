@@ -1,4 +1,4 @@
-require 'nokogiri'
+require 'hpricot'
 
 module Rack
   class Pjax
@@ -14,13 +14,16 @@ module Rack
 
       if pjax?(env)
         new_body = ""
-        body.each do |r|
-          container = Nokogiri::HTML(r).at_css("[@data-pjax-container]")
+        body.each do |b|
+          parsed_body = Hpricot(b)
+          container = parsed_body.at("[@data-pjax-container]")
           if container
-            title = Nokogiri::HTML(r).at_css("title")
-            new_body << title.to_s << container.inner_html.strip
+            title = parsed_body.at("title")
+
+            new_body << title.to_s if title
+            new_body << container.inner_html
           else
-            new_body << r
+            new_body << b
           end
         end
 
