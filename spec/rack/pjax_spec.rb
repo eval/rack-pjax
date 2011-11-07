@@ -10,8 +10,8 @@ describe Rack::Pjax do
       Rack::Pjax.new(
         lambda do |env|
           [
-            200, 
-            {'Content-Type' => 'text/plain', 'Content-Length' => Rack::Utils.bytesize(body).to_s}, 
+            200,
+            {'Content-Type' => 'text/plain', 'Content-Length' => Rack::Utils.bytesize(body).to_s},
             [body]
           ]
         end
@@ -34,6 +34,14 @@ describe Rack::Pjax do
 
       get "/", {}, {"HTTP_X_PJAX" => "true"}
       body.should == "World!"
+    end
+
+    it "should handle self closing tags with HTML5 elements" do
+      self.class.app = generate_app(:body => '<html><body><div data-pjax-container><article>World!<img src="test.jpg" /></article></div></body></html>')
+
+      get "/", {}, {"HTTP_X_PJAX" => "true"}
+
+      body.should == '<article>World!<img src="test.jpg" /></article>'
     end
 
     it "should return the correct Content Length" do
