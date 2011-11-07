@@ -18,10 +18,11 @@ module Rack
           parsed_body = Hpricot(b)
           container = parsed_body.at("[@data-pjax-container]")
           if container
+            children = container.children
             title = parsed_body.at("title")
 
             new_body << title.to_s if title
-            new_body << container.inner_html
+            new_body << children.map { |c| c.to_original_html }.join
           else
             new_body << b
           end
