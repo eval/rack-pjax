@@ -22,6 +22,7 @@ module Rack
             title = parsed_body.at("title")
 
             new_body << title.to_s if title
+            # workaround hpricot bug (https://github.com/eval/rack-pjax/pull/5)
             new_body << children.map { |c| c.to_original_html }.join
           else
             new_body << b
