@@ -13,10 +13,14 @@ module Rack
       headers = HeaderHash.new(headers)
 
       if pjax?(env)
+        params = Request.new(env).params
+        pjax_container = params['_pjax_return'] || '[data-pjax-container]'
+        
         new_body = ""
         body.each do |b|
           parsed_body = Hpricot(b)
-          container = parsed_body.at("[@data-pjax-container]")
+
+          container = parsed_body.at("[@#{pjax_container}]")
           if container
             children = container.children
             title = parsed_body.at("title")
