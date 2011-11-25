@@ -14,7 +14,7 @@ module Rack
 
       if pjax?(env)
         params = Request.new(env).params
-        pjax_container = params['_pjax_return'] || '[data-pjax-container]'
+        pjax_container = params['_pjax_return'] || 'data-pjax-container'
         
         new_body = ""
         body.each do |b|
