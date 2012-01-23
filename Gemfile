@@ -1,5 +1,7 @@
 source "http://rubygems.org"
 
+gem 'rake'
+
 gemspec
 
 group :test do
