@@ -19,5 +19,5 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency('rack', '~>1.3')
-  s.add_dependency('hpricot', '~>0.8.4')
+  s.add_dependency('hpricot', '~>0.8.6')
 end
