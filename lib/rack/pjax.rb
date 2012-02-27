@@ -32,6 +32,7 @@ module Rack
         body = [new_body]
 
         headers['Content-Length'] &&= bytesize(new_body).to_s
+        headers['X-PJAX-URL'] = env['REQUEST_URI'] if env['REQUEST_URI']
       end
       [status, headers, body]
     end
