@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <title><%= @title ? "#{@title} - " : nil %> pjax</title>
+
+  <%# iOS chromeless and native-app:y, if run from a homescreen bookmark %>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <%# and then make that bookmark look at least a smidge respectable too %>
+  <link rel="apple-touch-icon" href="/pjax-57.png"  sizes="57x57">
+  <link rel="apple-touch-icon" href="/pjax-72.png"  sizes="72x72">
+  <link rel="apple-touch-icon" href="/pjax-114.png" sizes="114x114">
+  <%# finally, make the page-top bar somewhat respectably toned down too %>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <script src="jquery.js"></script>
+  <script src="jquery.cookie.js"></script>
+  <script src="pages.js"></script>
+
+  <script src="jquery.pjax.js"></script>
+  <script type="text/javascript">
+    $(function(){
+      // pjax
+      $('ul a').pjax('#main')
+    })
+  </script>
+
+  <style>
+    pre{
+      float:left;
+    }
+    #main{
+      font-family:Helvetica,Arial,sans-serif;
+      float:left;
+      margin-left:-120px;
+      padding-top:80px;
+      width:30%;
+    }
+    ul{padding-left:15px;}
+  </style>
+</head>
+
+<pre>
+
+               ／￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣
+               |　<b>It's <%= Time.now.strftime '%I:%M:%S %p' %></b>
+               ＼＿　 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+        .--.     (  )
+       /    \   ( )
+      ## a  a  .
+      (   '._)
+       |'-- |
+     _.\___/_   ___<label><input type="checkbox" name="pjax" />pjax</label>___
+   ."\> \Y/|<'.  '._.-'
+  /  \ \_\/ /  '-' /
+  | --'\_/|/ |   _/
+  |___.-' |  |`'`
+    |     |  |
+    |    / './
+   /__./` | |
+      \   | |
+       \  | |
+       ;  | |
+       /  | |
+ jgs  |___\_.\_
+      `-"--'---'
+
+<a href="https://github.com/defunkt/jquery-pjax">github.com/defunkt/jquery-pjax</a>
+</pre>
+
+<div id="main">
+  <%= yield %>
+</div>
+
+</html>
