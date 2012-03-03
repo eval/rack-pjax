@@ -13,14 +13,17 @@ module Pjax
       erb :index
     end
 
+    get '/redirect' do
+      redirect '/dinosaurs.html'
+    end
+
     get '/:page.html' do
       erb :"#{params[:page]}"
     end
 
     helpers do
-      def title(str)
-        @title = str
-        nil
+      def partial(page, options={})
+        erb :"_#{page}", options.merge!(:layout => false)
       end
     end
   end
