@@ -22,7 +22,7 @@
   <script type="text/javascript">
     $(function(){
       // pjax
-      $('ul a').pjax('#main')
+      $('ul a').pjax('[data-pjax-container]')
     })
   </script>
 
@@ -69,7 +69,7 @@
 <a href="https://github.com/defunkt/jquery-pjax">github.com/defunkt/jquery-pjax</a>
 </pre>
 
-<div id="main">
+<div id="main" data-pjax-container>
   <%= yield %>
 </div>
 

@@ -10,25 +10,17 @@ module Pjax
     enable :static
 
     get '/' do
-      erb :index, :layout => !pjax?
+      erb :index
     end
 
     get '/:page.html' do
-      erb :"#{params[:page]}", :layout => !pjax?
+      erb :"#{params[:page]}"
     end
 
     helpers do
       def title(str)
-        if pjax?
-          "<title>#{str}</title>"
-        else
-          @title = str
-          nil
-        end
-      end
-
-      def pjax?
-        env['HTTP_X_PJAX']
+        @title = str
+        nil
       end
     end
   end
