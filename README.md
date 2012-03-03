@@ -1,6 +1,11 @@
-As seen on <http://pjax.heroku.com/>.
+Rack-pjax sample-app
+====================
 
-Check out
-[layout.erb](https://github.com/defunkt/jquery-pjax/blob/heroku/app/views/layout.erb)
-and
-[pjax.rb](https://github.com/defunkt/jquery-pjax/blob/heroku/app/pjax.rb).
+This is the sample-app from [jquery-pjax](http://pjax.heroku.com/) but with rack-pjax onboard.
+
+Running
+-------
+
+    $ bundle install
+    $ bundle exec shotgun config.ru
+
