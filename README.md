@@ -11,7 +11,11 @@ Ryan Bates featured [rack-pjax on Railscasts](http://railscasts.com/episodes/294
 Installation
 ------------
 
-Check out the [Railscast notes](http://railscasts.com/episodes/294-playing-with-pjax) how to integrate rack-pjax in your Rails 3.1 application.
+Check out the [Railscasts' notes](http://railscasts.com/episodes/294-playing-with-pjax) how to integrate rack-pjax in your Rails 3.1 application.
+
+You can find the source from the screencast over [here](https://github.com/ryanb/railscasts-episodes/tree/master/episode-294).
+
+Another sample-app: the original [pjax-demo](http://pjax.heroku.com/) but with rack-pjax onboard can be found in the [sample-app](https://github.com/eval/rack-pjax/tree/sample-app) branch.
 
 The more generic installation comes down to:
 
