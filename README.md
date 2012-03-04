@@ -68,6 +68,7 @@ Requirements
 Contributors
 ------
 
-* eval
-* matthooks
+* [eval](https://github.com/eval)
+* [matthooks](https://github.com/matthooks)
+* [koszta](https://github.com/koszta)
 
