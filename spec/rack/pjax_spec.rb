@@ -43,6 +43,14 @@ describe Rack::Pjax do
 
       body.should == '<article>World!<img src="test.jpg" /></article>'
     end
+    
+    it "should handle nesting of elements inside anchor tags" do
+      self.class.app = generate_app(:body => '<html><body><div data-pjax-container><a href="#"><h1>World!</h1></a></div></body></html>')
+
+      get "/", {}, {"HTTP_X_PJAX" => "true"}
+
+      body.should == '<a href="#"><h1>World!</h1></a>'
+    end
 
     it "should return the correct Content Length" do
       get "/", {}, {"HTTP_X_PJAX" => "true"}

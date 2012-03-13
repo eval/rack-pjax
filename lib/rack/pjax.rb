@@ -15,7 +15,7 @@ module Rack
       if pjax?(env)
         new_body = ""
         body.each do |b|
-          parsed_body = Hpricot(b)
+          parsed_body = Hpricot.XML(b)
           container = parsed_body.at("[@data-pjax-container]")
           if container
             children = container.children
