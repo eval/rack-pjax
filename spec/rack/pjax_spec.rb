@@ -43,7 +43,7 @@ describe Rack::Pjax do
 
       body.should == '<article>World!<img src="test.jpg" /></article>'
     end
-    
+
     it "should handle nesting of elements inside anchor tags" do
       self.class.app = generate_app(:body => '<html><body><div data-pjax-container><a href="#"><h1>World!</h1></a></div></body></html>')
 
