@@ -36,6 +36,13 @@ describe Rack::Pjax do
       body.should == "World!"
     end
 
+    it "should return the inner-html of the custom pjax-container in the body" do
+      self.class.app = generate_app(:body => '<html><body><div id="container">World!</div></body></html>')
+
+      get "/", {}, {"HTTP_X_PJAX" => "true", "HTTP_X_PJAX_CONTAINER" => "#container"}
+      body.should == "World!"
+    end
+
     it "should handle self closing tags with HTML5 elements" do
       self.class.app = generate_app(:body => '<html><body><div data-pjax-container><article>World!<img src="test.jpg" /></article></div></body></html>')
 
