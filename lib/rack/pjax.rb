@@ -18,7 +18,6 @@ module Rack
           parsed_body = Hpricot.XML(b)
           container = parsed_body.at("[@data-pjax-container]")
           if container
-            children = container.children
             title = parsed_body.at("title")
 
             new_body << title.to_s if title
