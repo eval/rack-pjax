@@ -1,7 +1,6 @@
 source "http://rubygems.org"
 
 gem 'rake'
-gem 'nokogiri', '~>1.5.2'
 
 gemspec
 
