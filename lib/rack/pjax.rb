@@ -11,12 +11,12 @@ module Rack
     def call(env)
       status, headers, body = @app.call(env)
       headers = HeaderHash.new(headers)
-
       if pjax?(env)
+        container_select = env["HTTP_X_PJAX_CONTAINER"] || "[@data-pjax-container]"
         new_body = ""
         body.each do |b|
           parsed_body = Hpricot.XML(b)
-          container = parsed_body.at("[@data-pjax-container]")
+          container = parsed_body.at(container_select)
           if container
             title = parsed_body.at("title")
 
