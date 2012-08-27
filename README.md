@@ -62,7 +62,7 @@ IV. Fire up your [pushState-enabled browser](http://caniuse.com/#search=pushstat
 Requirements
 ------------
 
-- Hpricot
+- Nokogiri
 
 
 Contributors
