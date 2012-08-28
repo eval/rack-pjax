@@ -1,4 +1,5 @@
 require 'sinatra'
+require "rack/pjax/version"
 
 module Pjax
   class App < Sinatra::Base
