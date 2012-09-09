@@ -2,7 +2,7 @@ source :rubygems
 
 gem "rake"
 gem "sinatra",     "1.0"
-gem "rack-pjax", '0.6.0.beta'
+gem "rack-pjax", '0.6.0'
 #gem "rack-pjax", :path => 'vendor/rack-pjax'
 
 group :development do
