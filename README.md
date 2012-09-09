@@ -70,7 +70,4 @@ Requirements
 Contributors
 ------
 
-* [eval](https://github.com/eval)
-* [matthooks](https://github.com/matthooks)
-* [koszta](https://github.com/koszta)
-* [luizcosta](https://github.com/luizcosta)
+[The contributors](https://github.com/defunkt/jquery-pjax/graphs/contributors).
