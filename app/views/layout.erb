@@ -14,16 +14,15 @@
   <%# finally, make the page-top bar somewhat respectably toned down too %>
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-  <script src="jquery.js"></script>
+  <script src="jquery-1.8.2.min.js"></script>
   <script src="jquery.cookie.js"></script>
   <script src="pages.js"></script>
 
   <script src="jquery.pjax.js"></script>
   <script type="text/javascript">
-    $(function(){
-      // pjax
-      $('ul a').pjax('[data-pjax-container]')
-    })
+    $(document).ready(function(){
+      $('#main').pjax('ul a');
+    });
   </script>
 
   <style>
@@ -70,7 +69,7 @@
 <a href="https://github.com/defunkt/jquery-pjax">github.com/defunkt/jquery-pjax</a>
 </pre>
 
-<div id="main" data-pjax-container>
+<div id="main">
   <%= yield %>
 </div>
 
