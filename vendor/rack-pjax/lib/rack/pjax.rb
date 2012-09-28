@@ -19,7 +19,7 @@ module Rack
         b.force_encoding('UTF-8') if RUBY_VERSION > '1.9.0'
 
         parsed_body = Nokogiri::HTML(b)
-        container = parsed_body.at("[@data-pjax-container]")
+        container = parsed_body.at(container_selector(env))
 
         new_body << begin
           if container
@@ -43,6 +43,10 @@ module Rack
     protected
       def pjax?(env)
         env['HTTP_X_PJAX']
+      end
+
+      def container_selector(env)
+        env['HTTP_X_PJAX_CONTAINER'] || "[@data-pjax-container]"
       end
   end
 end
