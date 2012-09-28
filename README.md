@@ -1,12 +1,14 @@
-Rack-pjax [![stillmaintained](http://stillmaintained.com/eval/rack-pjax.png)](http://stillmaintained.com/eval/rack-pjax) [![travis](https://secure.travis-ci.org/eval/rack-pjax.png?branch=master)](https://secure.travis-ci.org/#!/eval/rack-pjax)
+Rack-pjax [![travis](https://secure.travis-ci.org/eval/rack-pjax.png?branch=master)](https://secure.travis-ci.org/#!/eval/rack-pjax)
 ========
 
 Rack-pjax is middleware that lets you serve 'chrome-less' pages in respond to [pjax-requests](https://github.com/defunkt/jquery-pjax).
 
-It does this by simply filtering the generated page; only the title and inner-html of the pjax-container are sent to the client.
+It does this by stripping the generated body; only the title and inner-html of the pjax-container are sent to the client.
 
-While this won't save you any time rendering the page, it gives you more flexibility where or how to define the pjax-container.
+While this won't save you any time rendering the page, it gives you more flexibility where and how to define the pjax-container.
 Ryan Bates featured [rack-pjax on Railscasts](http://railscasts.com/episodes/294-playing-with-pjax) and explains how this gem compares to [pjax_rails](https://github.com/rails/pjax_rails).
+
+[![railscast](http://railscasts.com/assets/railscasts_logo-1eeafbafc2154fc5340c0a9800f402fd.png)](http://railscasts.com/)
 
 Installation
 ------------
@@ -68,7 +70,4 @@ Requirements
 Contributors
 ------
 
-* [eval](https://github.com/eval)
-* [matthooks](https://github.com/matthooks)
-* [koszta](https://github.com/koszta)
-* [luizcosta](https://github.com/luizcosta)
+[The contributors](https://github.com/eval/rack-pjax/graphs/contributors).
