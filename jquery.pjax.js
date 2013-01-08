@@ -30,10 +30,10 @@
 function fnPjax(selector, container, options) {
   var context = this
   return this.on('click.pjax', selector, function(event) {
-    options = optionsFor(container, options)
-    if (!options.container)
-      options.container = $(this).attr('data-pjax') || context
-    handleClick(event, options)
+    var opts = $.extend({}, optionsFor(container, options))
+    if (!opts.container)
+      opts.container = $(this).attr('data-pjax') || context
+    handleClick(event, opts)
   })
 }
 
@@ -66,7 +66,7 @@ function handleClick(event, container, options) {
 
   // Middle click, cmd click, and ctrl click should open
   // links in a new tab as normal.
-  if ( event.which > 1 || event.metaKey || event.ctrlKey )
+  if ( event.which > 1 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey )
     return
 
   // Ignore cross origin links
@@ -220,8 +220,9 @@ function pjax(options) {
     var container = extractContainer("", xhr, options)
 
     var allowed = fire('pjax:error', [xhr, textStatus, errorThrown, options])
-    if (textStatus !== 'abort' && allowed)
+    if (options.type == 'GET' && textStatus !== 'abort' && allowed) {
       locationReplace(container.url)
+    }
   }
 
   options.success = function(data, status, xhr) {
@@ -364,6 +365,11 @@ function onPjaxPopstate(event) {
         // Cache current container before replacement and inform the
         // cache which direction the history shifted.
         cachePop(direction, pjax.state.id, container.clone().contents())
+      } else {
+        // Page was reloaded but we have an existing history entry.
+        // Set it to our initial state.
+        pjax.state = state;
+        return;
       }
 
       var popstateEvent = $.Event('pjax:popstate', {
@@ -564,20 +570,29 @@ function extractContainer(data, xhr, options) {
   obj.url = stripPjaxParam(xhr.getResponseHeader('X-PJAX-URL') || options.requestUrl)
 
   // Attempt to parse response html into elements
-  var $data = $(data)
+  if (/<html/i.test(data)) {
+    var $head = $(data.match(/<head[^>]*>([\s\S.]*)<\/head>/i)[0])
+    var $body = $(data.match(/<body[^>]*>([\s\S.]*)<\/body>/i)[0])
+  } else {
+    var $head = $body = $(data)
+  }
 
   // If response data is empty, return fast
-  if ($data.length === 0)
+  if ($body.length === 0)
     return obj
 
-  // If there's a <title> tag in the response, use it as
+  // If there's a <title> tag in the header, use it as
   // the page's title.
-  obj.title = findAll($data, 'title').last().text()
+  obj.title = findAll($head, 'title').last().text()
 
   if (options.fragment) {
     // If they specified a fragment, look for it in the response
     // and pull it out.
-    var $fragment = findAll($data, options.fragment).first()
+    if (options.fragment === 'body') {
+      var $fragment = $body
+    } else {
+      var $fragment = findAll($body, options.fragment).first()
+    }
 
     if ($fragment.length) {
       obj.contents = $fragment.contents()
@@ -589,7 +604,7 @@ function extractContainer(data, xhr, options) {
     }
 
   } else if (!/<html/i.test(data)) {
-    obj.contents = $data
+    obj.contents = $body
   }
 
   // Clean up any <title> tags
@@ -707,7 +722,8 @@ function disable() {
   $.pjax.disable = $.noop
   $.pjax.click = $.noop
   $.pjax.submit = $.noop
-  $.pjax.reload = window.location.reload
+  $.pjax.reload = function() { window.location.reload() }
+
   $(window).unbind('popstate.pjax', onPjaxPopstate)
 }
 
