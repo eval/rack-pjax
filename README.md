@@ -1,7 +1,7 @@
 Rack-pjax sample-app
 ====================
 
-This is the sample-app from [jquery-pjax](http://pjax.heroku.com/) but with rack-pjax onboard.
+This is the sample-app from [jquery-pjax](http://pjax.herokuapp.com/) but with rack-pjax onboard.
 
 Check out [what changes](https://github.com/eval/rack-pjax/compare/7dbe7fa1^...7dbe7fa1) were needed to enable rack-pjax.
 

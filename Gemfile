@@ -1,4 +1,4 @@
-source :rubygems
+source 'https://rubygems.org'
 
 gem "rake"
 gem "sinatra",     "1.0"
@@ -6,5 +6,5 @@ gem "sinatra",     "1.0"
 gem "rack-pjax", :path => 'vendor/rack-pjax'
 
 group :development do
-  gem "shotgun",    "0.8"
+  gem "shotgun",    "~> 0.8"
 end

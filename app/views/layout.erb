@@ -14,14 +14,15 @@
   <%# finally, make the page-top bar somewhat respectably toned down too %>
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-  <script src="jquery-1.8.2.min.js"></script>
-  <script src="jquery.cookie.js"></script>
+  <script src="jquery-2.1.1.min.js"></script>
+  <script src="jquery.cookie-1.4.1.js"></script>
   <script src="pages.js"></script>
 
-  <script src="jquery.pjax.js"></script>
+  <script src="jquery.pjax-1.9.2.js"></script>
   <script type="text/javascript">
     $(document).ready(function(){
-      $('#main').pjax('ul a');
+        //$('#main').pjax('ul a');
+      $(document).pjax('ul a', '#main')
     });
   </script>
 
