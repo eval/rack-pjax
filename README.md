@@ -8,7 +8,7 @@ It does this by stripping the generated body; only the title and inner-html of t
 While this won't save you any time rendering the page, it gives you more flexibility where and how to define the pjax-container.
 Ryan Bates featured [rack-pjax on Railscasts](http://railscasts.com/episodes/294-playing-with-pjax) and explains how this gem compares to [pjax_rails](https://github.com/rails/pjax_rails).
 
-[![railscast](http://railscasts.com/assets/railscasts_logo-1eeafbafc2154fc5340c0a9800f402fd.png)](http://railscasts.com/)
+[![railscast](http://railscasts.com/assets/railscasts_logo-7101a7cd0a48292a0c07276981855edb.png)](http://railscasts.com/)
 
 Installation
 ------------
@@ -24,39 +24,41 @@ The more generic installation comes down to:
 I. Add the gem to your Gemfile
 
 ```ruby
-    # Gemfile
-    gem "rack-pjax"
+# Gemfile
+gem "rack-pjax"
 ```
 
 II. Include **rack-pjax** as middleware to your application(-stack)
 
 ```ruby
-    # config.ru
-    require ::File.expand_path('../config/environment',  __FILE__)
-    use Rack::Pjax
-    run RackApp::Application
+# config.ru
+require ::File.expand_path('../config/environment',  __FILE__)
+use Rack::Pjax
+run RackApp::Application
 ```
 
 III. Install [jquery-pjax](https://github.com/defunkt/jquery-pjax). Make sure to add the 'data-pjax-container'-attribute to the container.
 
 ```html
-    <head>
-      ...
-      <script src="/javascripts/jquery.js"></script>
-      <script src="/javascripts/jquery.pjax.js"></script>
-      <script type="text/javascript">
-        $(function(){
-          $('a:not([data-remote]):not([data-behavior]):not([data-skip-pjax])').pjax('[data-pjax-container]')
-        })
-      </script>
-      ...
-    </head>
-    <body>
-      <div data-pjax-container>
-        ...
-      </div>
-    </body>
+<head>
+  ...
+  <script src="/javascripts/jquery.js"></script>
+  <script src="/javascripts/jquery.pjax.js"></script>
+  <script type="text/javascript">
+    $(function(){
+      $(document).pjax('a', '[data-pjax-container]')
+    })
+  </script>
+  ...
+</head>
+<body>
+  <div data-pjax-container>
+    ...
+  </div>
+</body>
 ```
+
+(For more see [the docs of jquery-pjax](https://github.com/defunkt/jquery-pjax#usage).)
 
 IV. Fire up your [pushState-enabled browser](http://caniuse.com/#search=pushstate) and enjoy!
 
