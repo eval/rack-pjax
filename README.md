@@ -73,4 +73,3 @@ Contributors
 ------
 
 [The contributors](https://github.com/eval/rack-pjax/graphs/contributors).
-
