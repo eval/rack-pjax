@@ -1,8 +1,3 @@
-source "https://rubygems.org"
+source "http://rubygems.org"
 
 gemspec
-
-group :test do
-  gem "rspec"
-  gem "rack-test", :require => "rack/test"
-end
