@@ -26,21 +26,21 @@ describe Rack::Pjax do
 
     it "should return the title-tag in the body" do
       get "/", {}, {"HTTP_X_PJAX" => "true"}
-      body.should == "<title>Hello</title>World!"
+      expect(body).to eq("<title>Hello</title>World!")
     end
 
     it "should return the inner-html of the pjax-container in the body" do
       self.class.app = generate_app(:body => '<html><body><div data-pjax-container>World!</div></body></html>')
 
       get "/", {}, {"HTTP_X_PJAX" => "true"}
-      body.should == "World!"
+      expect(body).to eq("World!")
     end
 
     it "should return the inner-html of the custom pjax-container in the body" do
       self.class.app = generate_app(:body => '<html><body><div id="container">World!</div></body></html>')
 
       get "/", {}, {"HTTP_X_PJAX" => "true", "HTTP_X_PJAX_CONTAINER" => "#container"}
-      body.should == "World!"
+      expect(body).to eq("World!")
     end
 
     it "should handle self closing tags with HTML5 elements" do
@@ -48,7 +48,7 @@ describe Rack::Pjax do
 
       get "/", {}, {"HTTP_X_PJAX" => "true"}
 
-      body.should == '<article>World!<img src="test.jpg"></article>'
+      expect(body).to eq('<article>World!<img src="test.jpg"></article>')
     end
 
     it "should handle nesting of elements inside anchor tags" do
@@ -56,7 +56,7 @@ describe Rack::Pjax do
 
       get "/", {}, {"HTTP_X_PJAX" => "true"}
 
-      body.should == '<a href="#"><h1>World!</h1></a>'
+      expect(body).to eq('<a href="#"><h1>World!</h1></a>')
     end
 
     it "should handle html5 br tags correctly" do
@@ -64,19 +64,19 @@ describe Rack::Pjax do
 
       get "/", {}, {"HTTP_X_PJAX" => "true"}
 
-      body.should == '<p>foo<br>bar</p>'
+      expect(body).to eq('<p>foo<br>bar</p>')
     end
 
     it "should return the correct Content Length" do
       get "/", {}, {"HTTP_X_PJAX" => "true"}
-      headers['Content-Length'].should == Rack::Utils.bytesize(body).to_s
+      expect(headers['Content-Length']).to eq(Rack::Utils.bytesize(body).to_s)
     end
 
     it "should return the original body when there's no pjax-container" do
       self.class.app = generate_app(:body => '<html><body>Has no pjax-container</body></html>')
 
       get "/", {}, {"HTTP_X_PJAX" => "true"}
-      body.should == "<html><body>Has no pjax-container</body></html>"
+      expect(body).to eq("<html><body>Has no pjax-container</body></html>")
     end
 
     it "should preserve whitespaces of the original body" do
@@ -88,7 +88,7 @@ describe Rack::Pjax do
 BODY
 
       get "/", {}, {"HTTP_X_PJAX" => "true"}
-      body.should == container
+      expect(body).to eq(container)
     end
   end
 
@@ -99,12 +99,12 @@ BODY
 
     it "should return the original body" do
       get "/"
-      body.should == '<html><title>Hello</title><body><div data-pjax-container>World!</div></body></html>'
+      expect(body).to eq('<html><title>Hello</title><body><div data-pjax-container>World!</div></body></html>')
     end
 
     it "should return the correct Content Length" do
       get "/"
-      headers['Content-Length'].should == Rack::Utils.bytesize(body).to_s
+      expect(headers['Content-Length']).to eq(Rack::Utils.bytesize(body).to_s)
     end
   end
 end
