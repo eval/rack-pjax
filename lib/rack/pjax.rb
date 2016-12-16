@@ -34,7 +34,7 @@ module Rack
 
       body.close if body.respond_to?(:close)
 
-      headers['Content-Length'] &&= bytesize(new_body).to_s
+      headers['Content-Length'] &&= new_body.bytesize.to_s
       headers['X-PJAX-URL'] ||= Rack::Request.new(env).fullpath
 
       [status, headers, [new_body]]
