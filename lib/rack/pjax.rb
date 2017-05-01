@@ -24,8 +24,8 @@ module Rack
         new_body << begin
           if container
             title = parsed_body.at("title")
-
-            "%s%s" % [title, container.inner_html]
+            data = parsed_body.css(data_selector(env))
+            "%s%s%s" % [title, container.inner_html, data]
           else
             b
           end
@@ -47,6 +47,10 @@ module Rack
 
       def container_selector(env)
         env['HTTP_X_PJAX_CONTAINER'] || "[@data-pjax-container]"
+      end
+
+      def data_selector(env)
+        env['HTTP_X_PJAX_DATA'] || "[@data-pjax-data]"
       end
   end
 end

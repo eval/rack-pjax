@@ -29,7 +29,14 @@ describe Rack::Pjax do
       expect(body).to eq("<title>Hello</title>World!")
     end
 
-    it "should return the inner-html of the pjax-container in the body" do
+    it "should return the pjax data script tag" do
+      self.class.app = generate_app(:body => '<html><body><script data-pjax-data>console.log("Hello")</script><div data-pjax-container>World</div><script data-pjax-data>console.log("!")</script></body></html>')
+
+      get "/", {}, {"HTTP_X_PJAX" => "true"}
+      body.should =='World<script data-pjax-data>console.log("Hello")</script><script data-pjax-data>console.log("!")</script>'
+    end
+
+    it "should return the pjax data script tage" do
       self.class.app = generate_app(:body => '<html><body><div data-pjax-container>World!</div></body></html>')
 
       get "/", {}, {"HTTP_X_PJAX" => "true"}
@@ -106,5 +113,6 @@ BODY
       get "/"
       expect(headers['Content-Length']).to eq(body.bytesize.to_s)
     end
+
   end
 end
