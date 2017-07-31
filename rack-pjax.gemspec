@@ -8,6 +8,7 @@ Gem::Specification.new do |s|
   s.authors     = ["Gert Goet"]
   s.email       = ["gert@thinkcreate.nl"]
   s.homepage    = "https://github.com/eval/rack-pjax"
+  s.license     = "MIT"
   s.summary     = %q{Serve pjax responses through rack middleware}
   s.description = %q{Serve pjax responses through rack middleware}
 
