@@ -67,6 +67,14 @@ describe Rack::Pjax do
       expect(body).to eq('<p>foo<br>bar</p>')
     end
 
+    it "should handle frozen body string correctly" do
+      self.class.app = generate_app(:body => '<html><body><div data-pjax-container><p>foo<br>bar</p></div></body></html>'.freeze)
+
+      get "/", {}, {"HTTP_X_PJAX" => "true"}
+
+      expect(body).to eq('<p>foo<br>bar</p>')
+    end
+
     it "should return the correct Content Length" do
       get "/", {}, {"HTTP_X_PJAX" => "true"}
       expect(headers['Content-Length']).to eq(body.bytesize.to_s)
